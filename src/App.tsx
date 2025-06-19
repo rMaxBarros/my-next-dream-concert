@@ -32,6 +32,18 @@ function App() {
     return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
   };
 
+  // clique do botão "Add Concert"
+  const handleAddButtonClick = () => {
+    if (inputValue.trim() !== '') {
+      const newConcert: ConcertItem = {
+        id: generateUniqueId(),
+        artist: inputValue.trim(),
+      };
+      setConcerts((prevConcerts) => [...prevConcerts, newConcert]);
+      setInputValue('');
+    }
+  };
+
   // Adicionar os itens ao pressionar Enter
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && inputValue.trim() !== '') {
@@ -82,6 +94,7 @@ function App() {
         inputValue={inputValue}
         onInputChange={setInputValue}
         onInputKeyDown={handleInputKeyDown}
+        onAddButtonClick={handleAddButtonClick}
       />
 
       <h2 className='your-list-title jersey-20'>Your list:</h2>

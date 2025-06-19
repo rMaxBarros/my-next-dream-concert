@@ -1,17 +1,19 @@
 .header-container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   align-items: center;
   padding: 40px 20px;
   gap: 30px;
+  background-color: var(--background-color);
 }
 
 .header-title {
   font-size: 3.5em;
+  margin-bottom: 10px;
   color: var(--primary-text-bg-footer-color);
   text-align: center;
-  margin: 0;
-  white-space: nowrap;
+  /* margin: 0; */
+  /* white-space: nowrap; */
 }
 
 .concert-word {
@@ -20,25 +22,110 @@
 }
 
 .input-box {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
   max-width: 600px;
-  background-color: var(--primary-text-bg-footer-color);
-  border-radius: 50px;
-  padding: 10px 25px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* background-color: var(--primary-text-bg-footer-color); */
+  margin: 0 auto;
+  padding: 0 10px;
+  /* border-radius: 50px; */
+  /* padding: 10px 25px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .header-input {
   width: 100%;
   background: none;
   border: none;
+  border-radius: 50px;
+  background-color: var(--primary-text-bg-footer-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--dark-text-color);
   outline: none;
   font-size: 1.3em;
-  color: var(--dark-text-color);
-  padding: 5px 0;
+  padding: 15px 25px;
+  transition: all 0.3s ease;
+  flex-grow: 1;
 }
 
 .header-input::placeholder {
   color: var(--dark-text-color);
   opacity: 0.7;
+}
+
+.header-input:focus {
+  box-shadow: 0 0 0 3px rgba(106, 88, 77, 0.5); /* Exemplo de focus, ajuste a cor */
+}
+
+/* Botão de adicionar o show. Visto apenas em telas menores */
+.add-concert-button {
+  display: none; /* Escondido por padrão */
+  padding: 15px 20px;
+  margin-left: 10px;
+  background-color: var(--action-button-color);
+  color: var(--primary-text-bg-footer-color);
+  border: none;
+  border-radius: 50px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-concert-button:hover {
+  background-color: var(--action-button-hover-color);
+}
+
+/* Responsividade */
+
+/* Para telas menores que 768px (tablets e celulares) */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .input-box {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 15px;
+  }
+
+  .header-input {
+    padding: 12px 20px;
+    font-size: 1em;
+    flex-grow: 1;
+  }
+
+  .add-concert-button {
+    display: block;
+    padding: 12px 18px;
+    font-size: 0.9em;
+    margin-left: 10px;
+  }
+}
+
+/* Para telas muito pequenas (celulares menores) */
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 2em;
+    }
+    .header-container {
+        padding: 30px 10px;
+    }
+    .input-box {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-width: 300px;;
+    }
+    .header-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .add-concert-button {
+        width: 100%;
+        margin-left: 0;
+    }
 }

@@ -28,4 +28,6 @@ code {
   --dark-text-color: #000000;
   --light-text-color: #FFFFFF;
   --list-background-color: #F5F3E1;
+  --action-button-color: #0000004f;
+  --action-button-hover-color: #0000007f;
 }

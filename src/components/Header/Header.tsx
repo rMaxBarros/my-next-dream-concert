@@ -1,3 +1,4 @@
+// src/components/Header/Header.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import './Header.css';
@@ -6,9 +7,10 @@ interface HeaderProps {
   inputValue: string;
   onInputChange: (value: string) => void;
   onInputKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onAddButtonClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ inputValue, onInputChange, onInputKeyDown}) => {
+const Header: React.FC<HeaderProps> = ({ inputValue, onInputChange, onInputKeyDown, onAddButtonClick }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(e.target.value);
   }
@@ -35,6 +37,12 @@ const Header: React.FC<HeaderProps> = ({ inputValue, onInputChange, onInputKeyDo
           onChange={handleInputChange}
           onKeyDown={onInputKeyDown}
         />
+        <button
+          onClick={onAddButtonClick}
+          className="add-concert-button jersey-25"
+        >
+          Add Concert
+        </button>
       </div>
     </header>
   );

@@ -1,10 +1,7 @@
 .App {
-  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
   box-sizing: border-box;
 }
 
@@ -21,6 +18,13 @@
     opacity: 0.7;
 }
 
+.concert-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+}
+
 .concert-item {
   display: flex;
   justify-content: space-between;
@@ -31,13 +35,17 @@
   color: var(--dark-text-color);
   font-size: 1.1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-width: 500px;
+  width: 100%;
+  min-width: 400px;
   margin-bottom: .5em;
 }
 
 .concert-artist {
     text-align: left;
     flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Estilos específicos para o DatePicker */
@@ -54,6 +62,7 @@
     font-size: 0.9em;
     color: var(--dark-text-color);
     margin-left: 5px;
+    white-space: nowrap;
 }
 
 /* Contêiner para o DatePicker para ajudar no posicionamento */
@@ -63,12 +72,31 @@
   top: 100%;
   left: 50%; 
   transform: translateX(50%);
-
-  /* background-color: var(--list-background-color); */
-  /* border-radius: 8px; */
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
-  /* overflow: hidden; */
   padding-top: 10px;
+}
+
+.concert-actions {
+  display: flex;
+  gap: 5px;
+  margin-left: 5px;
+  flex-shrink: 0;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: var(--dark-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+
+.action-button:hover {
+  color: var(--action-button-hover-color);
 }
 
 /* Customização do react-datepicker */
@@ -134,4 +162,79 @@
 /* Ajuste para o botão do calendário dentro do concert-content */
 .concert-content .action-button {
   margin-left: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .App {
+    padding: 5px 50px; /* Menos padding para as bordas do app */
+  }
+  .your-list-title {
+    font-size: 1.8em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .concert-list-container {
+      padding: 50px;
+  }
+  .add-concert-button {
+    margin-top: 10px;
+  }
+  .concert-item {
+      padding: 5px 15px;
+      height: 40px;
+      font-size: 1em; /* Fonte ligeiramente menor */
+  }
+  .concert-artist {
+      white-space: normal;
+      max-width: 50%;
+  }
+  .concert-date {
+      font-size: 0.85em;
+  }
+  .action-button svg {
+    width: 20px;
+    height: 20px;
+  }
+  .concert-actions {
+      gap: 3px;
+  }
+}
+
+/* Para telas muito pequenas (celulares menores, por exemplo, abaixo de 480px) */
+@media (max-width: 480px) {
+    .App {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      padding: 0 40px;
+    }
+    .your-list-title {
+        font-size: 1.5em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .add-concert-button {
+    margin-top: 10px;
+    }
+    .concert-item {
+        padding: 10px 12px;
+        height: 40px;
+        font-size: 0.95em;
+    }
+    .concert-artist {
+        max-width: 45%;
+        word-break: break-word;
+    }
+    .concert-date {
+        font-size: .9em;
+        margin-right: 5px;
+    }
+    .action-button {
+        padding: 3px;
+    }
+    .action-button svg {
+        width: 18px;
+        height: 18px;
+    }
 }
