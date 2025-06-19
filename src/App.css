@@ -2,3 +2,9 @@
   text-align: center;
   padding: 20px;
 }
+
+.your-list-title {
+  color: var(--light-text-color);
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
