@@ -31,9 +31,107 @@
   color: var(--dark-text-color);
   font-size: 1.1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 500px;
+  margin-bottom: .5em;
 }
 
 .concert-artist {
     text-align: left;
     flex-grow: 1;
+}
+
+/* Estilos específicos para o DatePicker */
+.concert-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* Estilo para o texto da data */
+.concert-date {
+    font-size: 0.9em;
+    color: var(--dark-text-color);
+    margin-left: 5px;
+}
+
+/* Contêiner para o DatePicker para ajudar no posicionamento */
+.datepicker-portal {
+  position: absolute;
+  z-index: 1000; /* Garante que ele apareça acima de outros elementos */
+  top: 100%;
+  left: 50%; 
+  transform: translateX(50%);
+
+  /* background-color: var(--list-background-color); */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
+  /* overflow: hidden; */
+  padding-top: 10px;
+}
+
+/* Customização do react-datepicker */
+.react-datepicker {
+    font-family: 'Jersey 20', cursive;
+    border: 1px solid var(--primary-text-bg-footer-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--list-background-color);
+    color: var(--dark-text-color);
+}
+
+.react-datepicker__header {
+    background-color: var(--primary-text-bg-footer-color);
+    border-bottom: none;
+    padding-top: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+    color: var(--dark-text-color); /* Cor do mês e dias da semana */
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background-color: var(--dark-text-color); /* Cor do dia selecionado */
+    color: var(--primary-text-bg-footer-color); /* Texto do dia selecionado */
+    border-radius: 50%;
+}
+
+.react-datepicker__day--outside-month {
+    color: #ccc;
+}
+
+.react-datepicker__day--disabled {
+    color: #aaa; /* Cor dos dias desabilitados (passados) */
+    cursor: not-allowed;
+}
+.react-datepicker__day--disabled:hover {
+    background-color: transparent;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    background-color: transparent;
+    border: none;
+}
+.react-datepicker__navigation--previous:hover,
+.react-datepicker__navigation--next:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.react-datepicker__navigation-icon::before {
+  border-color: var(--dark-text-color); /* Cor das setas de navegação */
+}
+
+/* Para o popper (onde o calendário flutua) */
+.react-datepicker-popper {
+    z-index: 1000; /* Garante que ele fique acima de tudo */
+}
+
+/* Ajuste para o botão do calendário dentro do concert-content */
+.concert-content .action-button {
+  margin-left: 10px;
 }

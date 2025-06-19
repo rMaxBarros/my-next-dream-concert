@@ -2,11 +2,16 @@ import React, { use, useEffect } from 'react';
 import './App.css';
 import './index.css';
 import Header from './components/Header/Header';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { set } from 'react-datepicker/dist/date_utils';
+import { motion } from 'framer-motion';
 
 // Interface para os itens da lista
 interface ConcertItem {
   id: string;
   artist: string;
+  date?: string; // Data opcional para o concerto
 }
 
 function App() {
@@ -16,14 +21,7 @@ function App() {
     const storedConcerts = localStorage.getItem('dreamConcerts');
     return storedConcerts ? JSON.parse(storedConcerts) : [];
   });
-
-  // // carregar os dados do localStorage ao iniciar o app
-  // useEffect(() => {
-  //   const storedConcerts = localStorage.getItem('dreamConcerts');
-  //   if (storedConcerts) {
-  //     setConcerts(JSON.parse(storedConcerts));
-  //   }
-  // }, []);
+  const [datePickerOpenFor, setDatePickerOpenFor] = React.useState<string | null>(null);
 
   // salvar os dados no localStorage sempre que a lista de concertos mudar
   useEffect(() => {
@@ -41,10 +39,27 @@ function App() {
       const newConcert: ConcertItem = {
         id: generateUniqueId(), // usando a nova função para gerar um ID único
         artist: inputValue.trim(),
+        // date: undefined, // Data opcional, pode ser definida posteriormente
       };
       setConcerts((prevConcerts) => [...prevConcerts, newConcert]);
       setInputValue(''); // Limpar o input após adicionar
     }
+  };
+
+  const handleDateChange = (date: Date | null, concertId: string) => {
+    if (date) {
+      const formattedDate = date.toLocaleDateString('pt-BR'); // Formatar a data para o padrão brasileiro
+      setConcerts((prevConcerts) =>
+        prevConcerts.map((concert): ConcertItem =>
+          concert.id === concertId ? { ...concert, date: formattedDate } : concert
+        )
+      );
+    }
+    setDatePickerOpenFor(null); // Fecha o DatePicker após a seleção
+  }
+
+  const toggleDatePicker = (concertId: string) => {
+    setDatePickerOpenFor(datePickerOpenFor === concertId ? null : concertId);
   };
 
   return (
@@ -63,9 +78,72 @@ function App() {
           <p className="no-concerts-message jersey-20">No dream concerts added yet. Start typing!</p>
         ) : (
           concerts.map((concert) => (
-            <div key={concert.id} className="concert-item jersey-20">
-              <span className="concert-artist">{concert.artist}</span>
-            </div>
+            // REMOVIDO: Draggable
+            <motion.div // Manter motion.div para as animações de entrada/saída
+              key={concert.id}
+              className="concert-item jersey-20"
+              // REMOVIDO: provided.innerRef e provided.draggableProps
+              // REMOVIDO: snapshot.isDragging
+            >
+              {/* REMOVIDO: Ícone de "hambúrguer" (drag-handle) e seu SVG */}
+              {/*
+              <div className="drag-handle">
+                  <svg ... </svg>
+              </div>
+              */}
+
+              {/* Conteúdo principal do item (artista e data) */}
+              <div className="concert-content">
+                  <span className="concert-artist">{concert.artist}</span>
+                  {/* Exibir a data se ela existir */}
+                  {concert.date && (
+                    <span className="concert-date jersey-20" style={{ marginLeft: '5px' }}>{concert.date}</span>
+                  )}
+                  
+                  {/* Botão do ícone de calendário */}
+                  <button
+                    className="action-button"
+                    onClick={() => toggleDatePicker(concert.id)}
+                  >
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                          <path d="M0 0h24v24H0V0z" fill="none"/>
+                          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM5 7V6h14v1H5zm8-3h-2v2h2V4z"/>
+                      </svg>
+                  </button>
+
+                  {datePickerOpenFor === concert.id && (
+                    <div className="datepicker-portal">
+                      <DatePicker
+                        selected={concert.date ? new Date(concert.date.split('/').reverse().join('-')) : null}
+                        onChange={(date) => handleDateChange(date, concert.id)}
+                        dateFormat="dd/MM/yyyy"
+                        minDate={new Date()}
+                        inline
+                        onClickOutside={() => setDatePickerOpenFor(null)}
+                        showPopperArrow={false}
+                      />
+                    </div>
+                  )}
+              </div>
+
+              {/* Botões de ação (play/pause e delete) */}
+              <div className="concert-actions">
+                  {/* Placeholder para o botão de play/pause */}
+                  <button className="action-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                          <path d="M0 0h24v24H0V0z" fill="none"/>
+                          <path d="M8 5v14l11-7L8 5z"/>
+                      </svg>
+                  </button>
+                  {/* Placeholder para o botão de excluir */}
+                  <button className="action-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                          <path d="M0 0h24v24H0V0z" fill="none"/>
+                          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"/>
+                      </svg>
+                  </button>
+              </div>
+            </motion.div>
           ))
         )}
       </div>
