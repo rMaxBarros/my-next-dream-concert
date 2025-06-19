@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# My Next Dream Concert
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um aplicativo React simples e intuitivo para você organizar e acompanhar os shows que você sonha em ir! Adicione seus artistas favoritos, defina a data do show, encontre-os no Spotify e gerencie sua lista com facilidade.
 
-## Available Scripts
+## Funcionalidades ✨
 
-In the project directory, you can run:
+* **Adicionar Artistas/Shows:** Digite o nome de um artista e adicione-o rapidamente à sua lista de shows dos sonhos.
+* **Seleção de Data:** Clique no ícone de calendário ao lado de cada item para selecionar uma data específica para o show. A data será exibida de forma clara ao lado do artista.
+* **Integração com Spotify:** Um clique no botão "play" ao lado de cada show abre uma nova aba no seu navegador com a pesquisa do artista diretamente no Spotify, facilitando a descoberta de suas músicas.
+* **Exclusão de Itens:** Remova facilmente qualquer show da sua lista com um clique no botão de "lixeira".
+* **Persistência de Dados:** Todos os seus shows adicionados, datas e exclusões são salvos automaticamente no seu navegador (usando `localStorage`), garantindo que sua lista permaneça intacta mesmo após fechar e reabrir o aplicativo.
+* **Responsividade:** O layout do aplicativo é otimizado para diferentes tamanhos de tela (desktop, tablet e mobile), proporcionando uma experiência de usuário agradável em qualquer dispositivo.
+    * Em telas menores, um botão "Add Concert" aparece ao lado do campo de input para facilitar a adição de shows.
+* **Animações Sincronizadas:**
+    * A palavra "Concert" no título principal possui uma leve animação ao passar o mouse.
+    * O nome do artista em cada item da lista também apresenta uma animação sutil ao passar o mouse, adicionando interatividade.
 
-### `npm start`
+## Preview 💻
+![image](https://github.com/user-attachments/assets/07b46b5d-7077-4efc-9773-a6a66aff480a)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tecnologias Utilizadas 🛠️
 
-### `npm test`
+* **React:** Biblioteca JavaScript para construção da interface de usuário.
+* **TypeScript:** Superset tipado do JavaScript que adiciona segurança e escalabilidade ao código.
+* **Framer Motion:** Biblioteca para criar animações declarativas e de alta performance.
+* **React Datepicker:** Componente de seletor de datas para React.
+* **CSS:** Para estilização e responsividade do aplicativo.
+* **localStorage API:** Para persistir os dados da lista no navegador do usuário.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como Rodar o Projeto 🚀
 
-### `npm run build`
+Siga estas instruções para configurar e rodar o projeto localmente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Certifique-se de ter o [Node.js](https://nodejs.org/) e o [npm](https://www.npmjs.com/) (ou [Yarn](https://yarnpkg.com/)) instalados em sua máquina.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Instalação
 
-### `npm run eject`
+1.  **Clone o repositório:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+    cd SEU_REPOSITORIO
+    ```
+    *(Substitua `SEU_USUARIO` e `SEU_REPOSITORIO` pelos seus dados reais do GitHub, se for subir para lá.)*
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2.  **Instale as dependências:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Execução
 
-## Learn More
+Para iniciar o aplicativo em modo de desenvolvimento:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+# ou
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contato 📧
+[LinkedIn](https://www.linkedin.com/in/max-barros/)
