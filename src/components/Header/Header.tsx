@@ -2,7 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Header.css';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  inputValue: string;
+  onInputChange: (value: string) => void;
+  onInputKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ inputValue, onInputChange, onInputKeyDown}) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onInputChange(e.target.value);
+  }
+
   return (
     <header className="header-container">
       <h1 className="header-title jersey-20">
@@ -21,6 +31,9 @@ const Header: React.FC = () => {
           type="text"
           placeholder="What is the next concert you will be attending?"
           className="header-input jersey-25"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={onInputKeyDown}
         />
       </div>
     </header>
