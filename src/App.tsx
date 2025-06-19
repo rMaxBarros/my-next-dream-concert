@@ -71,6 +71,11 @@ function App() {
     window.open(spotifySearchUrl, '_blank'); // Abre em uma nova aba
   };
 
+  // Excluir um concerto da lista
+  const handleDeleteItem = (id: string) => {
+    setConcerts((prevConcerts) => prevConcerts.filter((concert) => concert.id !== id));
+  };
+
   return (
     <div className="App">
       <Header 
@@ -136,7 +141,7 @@ function App() {
                       </svg>
                   </button>
                   {/* Placeholder para o botão de excluir */}
-                  <button className="action-button">
+                  <button className="action-button" onClick={() => handleDeleteItem(concert.id)}>
                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                           <path d="M0 0h24v24H0V0z" fill="none"/>
                           <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"/>
