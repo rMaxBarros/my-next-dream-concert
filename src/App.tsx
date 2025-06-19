@@ -11,26 +11,35 @@ interface ConcertItem {
 
 function App() {
   const [inputValue, setInputValue] = React.useState('');
-  const [concerts, setConcerts] = React.useState<ConcertItem[]>([]);
-
-  // carregar os dados do localStorage ao iniciar o app
-  useEffect(() => {
+  // Estado para armazenar a lista de concertos assim que a aplicação é iniciada
+  const [concerts, setConcerts] = React.useState<ConcertItem[]>(() => {
     const storedConcerts = localStorage.getItem('dreamConcerts');
-    if (storedConcerts) {
-      setConcerts(JSON.parse(storedConcerts));
-    }
-  }, []);
+    return storedConcerts ? JSON.parse(storedConcerts) : [];
+  });
+
+  // // carregar os dados do localStorage ao iniciar o app
+  // useEffect(() => {
+  //   const storedConcerts = localStorage.getItem('dreamConcerts');
+  //   if (storedConcerts) {
+  //     setConcerts(JSON.parse(storedConcerts));
+  //   }
+  // }, []);
 
   // salvar os dados no localStorage sempre que a lista de concertos mudar
   useEffect(() => {
     localStorage.setItem('dreamConcerts', JSON.stringify(concerts));
   }, [concerts]);
 
+  // Função para gerar um ID único para cada item
+  const generateUniqueId = (): string => {
+    return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+  };
+
   // Adicionar os itens ao pressionar Enter
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && inputValue.trim() !== '') {
       const newConcert: ConcertItem = {
-        id: Date.now().toString(), // id simples baseado no timestamp
+        id: generateUniqueId(), // usando a nova função para gerar um ID único
         artist: inputValue.trim(),
       };
       setConcerts((prevConcerts) => [...prevConcerts, newConcert]);
