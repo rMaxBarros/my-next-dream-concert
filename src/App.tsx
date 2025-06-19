@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import './index.css';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>My Next Dream Concert</h1>
-      <p>Setup inicial concluído!</p>
+      <Header />
     </div>
   );
 }
