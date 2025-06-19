@@ -1,10 +1,9 @@
-import React, { use, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import './index.css';
 import Header from './components/Header/Header';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { set } from 'react-datepicker/dist/date_utils';
 import { motion } from 'framer-motion';
 
 // Interface para os itens da lista
@@ -88,19 +87,10 @@ function App() {
           <p className="no-concerts-message jersey-20">No dream concerts added yet. Start typing!</p>
         ) : (
           concerts.map((concert) => (
-            // REMOVIDO: Draggable
             <motion.div // Manter motion.div para as animações de entrada/saída
               key={concert.id}
               className="concert-item jersey-20"
-              // REMOVIDO: provided.innerRef e provided.draggableProps
-              // REMOVIDO: snapshot.isDragging
             >
-              {/* REMOVIDO: Ícone de "hambúrguer" (drag-handle) e seu SVG */}
-              {/*
-              <div className="drag-handle">
-                  <svg ... </svg>
-              </div>
-              */}
 
               {/* Conteúdo principal do item (artista e data) */}
               <div className="concert-content">
