@@ -58,8 +58,18 @@ function App() {
     setDatePickerOpenFor(null); // Fecha o DatePicker após a seleção
   }
 
+  // Abrir ou fechar o DatePicker para um concerto específico
   const toggleDatePicker = (concertId: string) => {
     setDatePickerOpenFor(datePickerOpenFor === concertId ? null : concertId);
+  };
+
+  // Abrir Spotify do artista
+  // Esta função será chamada quando o usuário clicar no botão de play
+  const handlePlayClick = (artistName: string) => {
+    // Encodifica o nome do artista para ser seguro em uma URL
+    const encodedArtistName = encodeURIComponent(artistName);
+    const spotifySearchUrl = `https://open.spotify.com/search/${encodedArtistName}`;
+    window.open(spotifySearchUrl, '_blank'); // Abre em uma nova aba
   };
 
   return (
@@ -129,7 +139,7 @@ function App() {
               {/* Botões de ação (play/pause e delete) */}
               <div className="concert-actions">
                   {/* Placeholder para o botão de play/pause */}
-                  <button className="action-button">
+                  <button className="action-button" onClick={() => handlePlayClick(concert.artist)}>
                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                           <path d="M0 0h24v24H0V0z" fill="none"/>
                           <path d="M8 5v14l11-7L8 5z"/>
